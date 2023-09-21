@@ -5,6 +5,10 @@ Delivery app built on nestjs&TypeScript
 
 DB config on .sample.env
 
+## DOCS
+Dosc created using Api Swagger,
+docs at localhost:PORT/dosc
+
 ## Installation
 
 ```bash
