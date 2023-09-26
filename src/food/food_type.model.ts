@@ -11,8 +11,7 @@ interface IFoodTypeCreationAttrs{
 export class FoodType extends Model<FoodType, IFoodTypeCreationAttrs> {
 
     @ApiProperty({example: "1", description: "ID категории продукта"})
-    @PrimaryKey
-    @Column({ type: DataType.BIGINT})
+    @Column({type: DataType.BIGINT, unique: true, autoIncrement: true, primaryKey: true})
     id: number;
 
     @ApiProperty({example: "Фастфуд", description: "Название категории продукта"})

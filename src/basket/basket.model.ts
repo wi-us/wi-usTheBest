@@ -3,6 +3,7 @@ import { ApiProperty } from "@nestjs/swagger";
 import { Model, Table, Column, DataType, ForeignKey, BelongsTo, HasMany, PrimaryKey } from "sequelize-typescript";
 import { Food } from "src/food/food.model";
 import { User } from "src/users/users.model";
+import { Worker } from "src/worker/worker.model";
 
 
 interface IBasketCreationAttrs{
@@ -15,8 +16,7 @@ interface IBasketCreationAttrs{
 export class Basket extends Model<Basket,IBasketCreationAttrs>{
 
     @ApiProperty({example: "1", description: "ID корзины"})
-    @PrimaryKey
-    @Column({ type: DataType.BIGINT })
+    @Column({type: DataType.BIGINT, unique: true, autoIncrement: true, primaryKey: true})
     id: number;
       
     @ApiProperty({example: "3000", description: "Стоимость корзины"})
@@ -25,8 +25,10 @@ export class Basket extends Model<Basket,IBasketCreationAttrs>{
 
     @ApiProperty({example: "2", description: "ID пользователя"})
     @ForeignKey(() => User)
-    @Column({type: DataType.INTEGER, unique: true, allowNull: false })
+    @Column({type: DataType.BIGINT, unique: true, allowNull: false })
     user_ID: number;
+
+    
 
     // Define associations and constraints
     @BelongsTo(() => User)

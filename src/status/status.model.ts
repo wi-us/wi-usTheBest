@@ -6,12 +6,12 @@ interface IStatusCreationAttrs{
     type: string,
 }
 
-@Table({ tableName: "Status" })
+@Table({ tableName: "Order_Status" })
 export class Status extends Model<Status, IStatusCreationAttrs> {
 
     @ApiProperty({example: "1", description: "ID статуса"})
-    @PrimaryKey
-    @Column({ type: DataType.BIGINT })
+    
+    @Column({type: DataType.BIGINT, unique: true, autoIncrement: true, primaryKey: true})
     id: number;
 
     @ApiProperty({example: "В пути", description: "Статус заказа"})

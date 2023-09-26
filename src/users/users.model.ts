@@ -1,6 +1,6 @@
 
 import { ApiProperty } from "@nestjs/swagger";
-import { Model, Table, Column, DataType, PrimaryKey } from "sequelize-typescript";
+import { Model, Table, Column, DataType, PrimaryKey, IsUUID, AfterCreate } from "sequelize-typescript";
 
 
 interface IUserCreationAttrs{
@@ -13,8 +13,7 @@ interface IUserCreationAttrs{
 export class User extends Model<User,IUserCreationAttrs>{
 
     @ApiProperty({example: "1", description: "ID пользователя"})
-    @PrimaryKey
-    @Column({ type: DataType.BIGINT })
+    @Column({type: DataType.BIGINT, unique: true, autoIncrement: true, primaryKey: true})
     id: number;
 
     @ApiProperty({example: "785694589034590", description: "Телеграмм ID пользователя"})
@@ -36,4 +35,9 @@ export class User extends Model<User,IUserCreationAttrs>{
     @ApiProperty({example: "user_user@mail.ru", description: "Почта пользователя"})
     @Column({ type: DataType.STRING(64), allowNull: true })
     mail: string;
+
+    // @AfterCreate
+    // static linkBasket(insance: User){}
+
+
 }

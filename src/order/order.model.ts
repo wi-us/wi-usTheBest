@@ -3,6 +3,9 @@ import { ApiProperty } from "@nestjs/swagger";
 import { Model, Table, Column, DataType, ForeignKey, BelongsTo, PrimaryKey } from "sequelize-typescript";
 import { Basket } from "src/basket/basket.model";
 import { Status } from "src/status/status.model";
+import { Worker } from "src/worker/worker.model";
+
+
 
 interface IOrderCreationAttrs{
 
@@ -17,8 +20,7 @@ interface IOrderCreationAttrs{
 export class Order extends Model<Order, IOrderCreationAttrs> {
 
     @ApiProperty({example: "1", description: "ID заказа"})
-    @PrimaryKey
-    @Column({ type: DataType.BIGINT })
+    @Column({type: DataType.BIGINT, unique: true, autoIncrement: true, primaryKey: true})
     id: number;
 
     @ApiProperty({example: "1", description: "Id корзины в заказе"})
@@ -38,11 +40,17 @@ export class Order extends Model<Order, IOrderCreationAttrs> {
     @Column({ type: DataType.DECIMAL(8, 2), allowNull: false })
     price: number;
 
-
+    @ApiProperty({example: "2", description: "ID курьера взявшего заказ"})
+    @Column({type: DataType.BIGINT, allowNull: true})
+    @ForeignKey(()=> Worker)
+    worker_ID: number;
     // Define foreign key constraints
     @BelongsTo(() => Basket)
     basket: Basket;
 
     @BelongsTo(() => Status, 'Status')
     orderStatus: Status;
+
+    @BelongsTo(()=> Worker)
+    worker: Worker;
 }
