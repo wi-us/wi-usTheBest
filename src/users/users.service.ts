@@ -22,8 +22,10 @@ export class UsersService {
 
 
         //Creating basket for user
-        const basket = await this.basketRepository.create({user_ID: user.id})
-     
+         await this.basketRepository.create({user_ID: user.id})
+       
+       
+
         return user;
     }
 
@@ -33,8 +35,8 @@ export class UsersService {
         
    }
 
-   async getUserById(dto: {id: number}){
-    const user = await this.userRepository.findByPk(dto.id)
+   async getUserById(id: number){
+    const user = await this.userRepository.findByPk(id, {include: {all: true}})
     
     if(!user){
         return 

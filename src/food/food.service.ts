@@ -5,9 +5,9 @@ import { InjectModel } from '@nestjs/sequelize';
 @Injectable()
 export class FoodService {
 
-    constructor(@InjectModel(Food) private userRepository: typeof Food){}
+    constructor(@InjectModel(Food) private foodRepository: typeof Food){}
 
-    async createFood(dto: FoodCreationDto){
+    async createFood(dto){
 
     }
 

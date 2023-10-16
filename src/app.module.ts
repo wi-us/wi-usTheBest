@@ -16,6 +16,9 @@ import { Status } from './status/status.model';
 import { RolesModule } from './roles/roles.module';
 import { Worker } from './worker/worker.model';
 import { Role } from './roles/roles.model';
+import { WorkerStatus } from './worker/worker-status.model';
+import { WorkerModule } from './worker/worker.module';
+import { AuthModule } from './auth/auth.module';
 
 
 
@@ -40,14 +43,16 @@ import { Role } from './roles/roles.model';
         username: process.env.POSTGRES_USER,
         password: process.env.POSTGRES_PASSWORD,
         database: process.env.POSTGRES_DB,
-      models: [User, Basket, Order, FoodType, Food, Status, Worker, Role],
+      models: [User, Basket, Order, FoodType, Food, Status, Worker, Role, WorkerStatus],
       autoLoadModels: true,
-      synchronize: true
+     
       }),
     UsersModule,
     BasketModule,
     FoodModule,
-    RolesModule,  
+    RolesModule,
+    WorkerModule,
+    AuthModule,  
   ],
   controllers: [],
   providers: [],

@@ -1,6 +1,7 @@
 
 import { ApiProperty } from "@nestjs/swagger";
-import { Model, Table, Column, DataType, PrimaryKey, IsUUID, AfterCreate } from "sequelize-typescript";
+import { Model, Table, Column, DataType,  BelongsTo, HasOne } from "sequelize-typescript";
+import { Basket } from "src/basket/basket.model";
 
 
 interface IUserCreationAttrs{
@@ -35,6 +36,10 @@ export class User extends Model<User,IUserCreationAttrs>{
     @ApiProperty({example: "user_user@mail.ru", description: "Почта пользователя"})
     @Column({ type: DataType.STRING(64), allowNull: true })
     mail: string;
+
+    
+    @HasOne(()=>Basket)
+    basket: Basket;
 
     // @AfterCreate
     // static linkBasket(insance: User){}

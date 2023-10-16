@@ -12,5 +12,6 @@ import { Basket } from 'src/basket/basket.model';
   imports: [
     SequelizeModule.forFeature([User, Basket]),
   ],
+
 })
 export class UsersModule {}

@@ -1,11 +1,13 @@
 
 import { ApiProperty } from "@nestjs/swagger";
-import { Model, Table, Column, DataType, PrimaryKey } from "sequelize-typescript";
+import { Model, Table, Column, DataType, PrimaryKey, BelongsTo, ForeignKey, HasOne } from "sequelize-typescript";
+import { WorkerStatus } from "./worker-status.model";
+import { Role } from "src/roles/roles.model";
 
 
 interface IWorkerCreationAttrs{
-    role_ID: number,
-    login: string,
+    // role_ID: number,
+    email: string,
     password: string,
 
 }
@@ -18,16 +20,15 @@ export class Worker extends Model<Worker,IWorkerCreationAttrs>{
     @Column({type: DataType.BIGINT, unique: true, autoIncrement: true, primaryKey: true})
     id: number;
 
+   
     @ApiProperty({example: "1", description: "ID роли пользователя"})
-    @Column({ type: DataType.BIGINT, allowNull: false })
+    @ForeignKey(()=>Role)
+    @Column({ type: DataType.BIGINT, allowNull: true })
     role_ID: number;
 
-    @ApiProperty({example: "usser_user", description: "Логин пользователя"})
-    @Column({ type: DataType.STRING(32), allowNull: false })
-    login: string;
-
+   
     @ApiProperty({example: "sadna9asda", description: "Пароль пользователя"})
-    @Column({ type: DataType.STRING(32), allowNull: false })
+    @Column({ type: DataType.STRING, allowNull: false })
     password: string;
 
     @ApiProperty({example: "89111111111", description: "Телефон пользователя"})
@@ -35,6 +36,17 @@ export class Worker extends Model<Worker,IWorkerCreationAttrs>{
     phone: string;
 
     @ApiProperty({example: "user_user@mail.ru", description: "Почта пользователя"})
-    @Column({ type: DataType.STRING(64), allowNull: true })
-    mail: string;
+    @Column({ type: DataType.STRING(64), allowNull: false })
+    email: string;
+
+    @ForeignKey(()=>WorkerStatus)
+    @ApiProperty({example: "1", description: "На линии или нет"})
+    @Column({ type: DataType.BIGINT, allowNull: true })
+    status_ID: number;
+
+    @BelongsTo(()=>WorkerStatus)
+    status: WorkerStatus; 
+
+    @BelongsTo(()=>Role)
+    role: Role; 
 }

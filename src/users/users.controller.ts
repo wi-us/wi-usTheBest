@@ -13,7 +13,7 @@ export class UsersController {
 
     @ApiOperation({summary: "Создание пользователя "})
     @ApiResponse({status: 200, type: User})
-    @Post("/create")
+    @Post()
     create(@Body() userDto: CreateUserDto){
         return this.userService.createUser(userDto)
     }
@@ -29,7 +29,7 @@ export class UsersController {
     @ApiResponse({status: 200, type: User})
     @Get("/:id")
     getById(@Param("id") id){
-        return this.userService.getUserById({id: id})
+        return this.userService.getUserById(id)
     }
 
 }
