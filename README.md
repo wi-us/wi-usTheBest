@@ -7,7 +7,7 @@ DB config on .sample.env
 
 ## DOCS
 Dosc created using Api Swagger,
-docs at localhost:PORT/dosc
+docs at localhost:PORT/api/docs
 
 ## Installation
 
