@@ -1,42 +1,31 @@
-
 import { ApiProperty } from "@nestjs/swagger";
 import { Model, Table, Column, DataType, ForeignKey, BelongsTo, HasMany, PrimaryKey, BelongsToMany } from "sequelize-typescript";
 import { Food } from "src/food/food.model";
 import { User } from "src/users/users.model";
 import { Worker } from "src/worker/worker.model";
-import { BasketFood } from "./basket-food.model";
+import { Basket } from "./basket.model";
 
 
-interface IBasketCreationAttrs{
-    user_ID: number,
-    
-}
 
 
-@Table({tableName: "Basket"})
-export class Basket extends Model<Basket,IBasketCreationAttrs>{
+@Table({tableName: "BasketFood", createdAt: false, updatedAt: false,})
+export class BasketFood extends Model<BasketFood>{
 
     @ApiProperty({example: "1", description: "ID корзины"})
     @Column({type: DataType.BIGINT, unique: true, autoIncrement: true, primaryKey: true})
     id: number;
       
     @ApiProperty({example: "3000", description: "Стоимость корзины"})
-    @Column({ type: DataType.DECIMAL(8, 2), allowNull: true, defaultValue: 0, })
-    price: number;
+    @ForeignKey(() => Basket)
+    @Column({type: DataType.BIGINT})
+    basket_ID: number;
 
     @ApiProperty({example: "2", description: "ID пользователя"})
-    @ForeignKey(() => User)
-    @Column({type: DataType.BIGINT, unique: true, allowNull: false })
-    user_ID: number;
+    @ForeignKey(() => Food)
+    @Column({type: DataType.BIGINT})
+    food_ID: number;
 
     
-
-    // Define associations and constraints
-    @BelongsTo(() => User)
-    user: User;
-
-    @BelongsToMany(() => Food, ()=>BasketFood)
-    foods: Food[];
     
 }
 

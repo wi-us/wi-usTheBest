@@ -19,11 +19,11 @@ export class Role extends Model<Role,IRoleCreationAttrs>{
     id: number;
 
     @ApiProperty({example: "Администратор", description: "Описание роли"})
-    @Column({ type: DataType.STRING(32), allowNull: false, unique: true })
+    @Column({ type: DataType.STRING(32), allowNull: false })
     description: string;
 
     @ApiProperty({example: "ADMIN", description: "Значение роли"})
-    @Column({ type: DataType.STRING(32), allowNull: false })
+    @Column({ type: DataType.STRING(32), allowNull: false, unique: true, })
     value: string;
 
     @HasMany(()=>Worker)

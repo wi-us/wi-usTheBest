@@ -13,14 +13,14 @@ export class AuthController {
     ){}
 
     @ApiOperation({summary: "Логин"})
-    @ApiResponse({status: 200, type: CreateWorkerDto})
+    @ApiResponse({status: 200, description: 'Successful register', type: 'string'})
     @Post("/login")
     login(@Body() workerDto: CreateWorkerDto ){
         return this.authService.login(workerDto)
     }
 
     @ApiOperation({summary: "Регистрация пользователя"})
-    @ApiResponse({status: 200, type: CreateWorkerDto})
+    @ApiResponse({status: 201,  description: 'Successful register', type: 'string', })
     @Post("/register")
     registration(@Body() workerDto: CreateWorkerDto ){
         return this.authService.registration(workerDto)

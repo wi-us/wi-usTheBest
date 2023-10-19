@@ -7,7 +7,7 @@ async function bootstrap() {
 
   const app = await NestFactory.create(AppModule);
 
-  const config = new DocumentBuilder().setTitle("Delivery App").setDescription("Docs").setVersion("1.0.0").addTag("NTI").build()
+  const config = new DocumentBuilder().setTitle("Delivery App").setDescription("Docs").setVersion("1.0.0").addTag("NTI").addBearerAuth().build()
   const document = SwaggerModule.createDocument(app, config)
 
   SwaggerModule.setup("/api/docs", app, document)

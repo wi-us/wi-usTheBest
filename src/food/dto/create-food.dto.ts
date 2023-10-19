@@ -11,7 +11,7 @@ export class CreateFoodDto{
     readonly picture: string;
 
     @ApiProperty({example: "1", description: "ID типа продукта"})
-    readonly food_type_ID: number;
+    readonly type_id: number;
 
     @ApiProperty({example: "21.11", description: "Цена продукта"})
     readonly price: number;

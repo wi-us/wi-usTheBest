@@ -1,13 +1,14 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { Model, Table, Column, DataType, PrimaryKey, BelongsTo, ForeignKey } from "sequelize-typescript";
+import { Model, Table, Column, DataType, PrimaryKey, BelongsTo, ForeignKey, BelongsToMany } from "sequelize-typescript";
 import { FoodType } from "./food_type.model";
 import { Basket } from "src/basket/basket.model";
+import { BasketFood } from "src/basket/basket-food.model";
 
 
 interface IFoodCreationAttrs{
     name: string,
     picture: string,
-    food_type_ID: number,
+    type_id: number,
     price: number,
     
 }
@@ -17,7 +18,6 @@ interface IFoodCreationAttrs{
 export class Food extends Model<Food,IFoodCreationAttrs>{
 
     @ApiProperty({example: "1", description: "ID продукта"})
-    @ForeignKey(()=>Basket)
     @Column({type: DataType.BIGINT, unique: true, autoIncrement: true, primaryKey: true})
     id: number;
 
@@ -26,12 +26,12 @@ export class Food extends Model<Food,IFoodCreationAttrs>{
     name: string;
 
     @ApiProperty({example: "2", description: "Ссылка на картинку"})
-    @Column({ type: DataType.STRING(128), allowNull: false })
-    pricture: string;
+    @Column({ type: DataType.TEXT, allowNull: false })
+    picture: string;
 
     @ApiProperty({example: "2", description: "ID категории продукта"})
     @ForeignKey(()=>FoodType)
-    @Column({ type: DataType.BIGINT, allowNull: false })
+    @Column({ type: DataType.BIGINT, allowNull: true })
     type_id: number;
 
     @ApiProperty({example: "3000", description: "Стоимость продукта"})
@@ -40,4 +40,8 @@ export class Food extends Model<Food,IFoodCreationAttrs>{
     
     @BelongsTo(() => FoodType)
     foodType: FoodType;
-}
+
+    @BelongsToMany(()=> Basket, ()=>BasketFood)
+    baskets: Basket[];
+
+}   

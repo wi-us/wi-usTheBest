@@ -1,5 +1,5 @@
 import { Body, Controller, Get, Post, UseGuards } from '@nestjs/common';
-import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { WorkerService } from './worker.service';
 import { Worker } from './worker.model';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
@@ -9,6 +9,7 @@ import { addRoleDto } from './dto/add-role.dto';
 
 @ApiTags("Работники")
 @Controller('worker')
+@ApiBearerAuth()
 export class WorkerController {
 
     constructor(private readonly workerService: WorkerService){}
