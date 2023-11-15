@@ -32,4 +32,11 @@ export class UsersController {
         return this.userService.getUserById(id)
     }
 
+    @ApiOperation({summary: "Получить пользователя по telegram ID"})
+    @ApiResponse({status: 200, type: User})
+    @Get("/:tgId")
+    getByTelegramId(@Param("tgId") telegramId: string){
+        return this.userService.getUserByTelegramId(telegramId)
+    }
+
 }

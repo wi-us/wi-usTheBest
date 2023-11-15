@@ -5,6 +5,7 @@ import { Basket } from './basket.model';
 import { SequelizeModule } from '@nestjs/sequelize';
 import { BasketFood } from './basket-food.model';
 import { Food } from 'src/food/food.model';
+import { FoodModule } from 'src/food/food.module';
 
 @Module({
   controllers: [BasketController],
@@ -12,7 +13,10 @@ import { Food } from 'src/food/food.model';
   imports:[
     
     SequelizeModule.forFeature([Basket, Food, BasketFood]),
-    
+    FoodModule,
   ],
+  exports:[
+    BasketService,
+  ]
 })
 export class BasketModule {}

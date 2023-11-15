@@ -20,6 +20,8 @@ import { WorkerStatus } from './worker/worker-status.model';
 import { WorkerModule } from './worker/worker.module';
 import { AuthModule } from './auth/auth.module';
 import { BasketFood } from './basket/basket-food.model';
+import { OrderHistory } from './order/order-history.model';
+import { OrderItem } from './order/order-item.model';
 
 
 
@@ -44,9 +46,11 @@ import { BasketFood } from './basket/basket-food.model';
         username: process.env.POSTGRES_USER,
         password: process.env.POSTGRES_PASSWORD,
         database: process.env.POSTGRES_DB,
-      models: [User, Basket, Order, FoodType, Food, Status, Worker, Role, WorkerStatus, BasketFood],
+      models: [User, Basket, Order, FoodType, Food, Status, Worker, Role, WorkerStatus, BasketFood, OrderHistory, OrderItem],
       autoLoadModels: true,
-     
+      dialectOptions: { decimalNumbers: true }
+    //  synchronize: true,
+    //  sync: {force: true},
       }),
     UsersModule,
     BasketModule,

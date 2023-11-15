@@ -3,22 +3,23 @@ import { Model, Table, Column, DataType, ForeignKey, BelongsTo, HasMany, Primary
 import { Food } from "src/food/food.model";
 import { User } from "src/users/users.model";
 import { Worker } from "src/worker/worker.model";
-import { Basket } from "./basket.model";
+import { OrderHistory } from "./order-history.model";
 
 
 
 
-@Table({tableName: "BasketFood", createdAt: false, updatedAt: false,})
-export class BasketFood extends Model<BasketFood>{
 
-    @ApiProperty({example: "1", description: "ID корзины"})
+@Table({tableName: "OrderItem", createdAt: false, updatedAt: false,})
+export class OrderItem extends Model<OrderItem>{
+
+    @ApiProperty({example: "1", description: "ID "})
     @Column({type: DataType.BIGINT, unique: true, autoIncrement: true, primaryKey: true})
     id: number;
       
     @ApiProperty({example: "3000", description: "Стоимость корзины"})
-    @ForeignKey(() => Basket)
+    @ForeignKey(() => OrderHistory)
     @Column({type: DataType.BIGINT})
-    basket_ID: number;
+    order_ID: number;
 
     @ApiProperty({example: "2", description: "ID пользователя"})
     @ForeignKey(() => Food)
@@ -26,7 +27,7 @@ export class BasketFood extends Model<BasketFood>{
     food_ID: number;
 
     @ApiProperty({example: "2", description: "ID пользователя"})
-    @Column({type: DataType.BIGINT, allowNull:true, defaultValue: 1})
+    @Column({type: DataType.BIGINT})
     quantity: number;
 
     

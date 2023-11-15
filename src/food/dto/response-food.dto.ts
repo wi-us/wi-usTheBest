@@ -1,8 +1,9 @@
 import { ApiProperty } from "@nestjs/swagger";
+import { FoodType } from "../food_type.model";
 
 
 
-export class CreateFoodDto{
+export class ResponseFoodDto{
     
     @ApiProperty({example: "Пицца", description: "Название продукта"})
     readonly  name: string;
@@ -11,8 +12,11 @@ export class CreateFoodDto{
     readonly picture: string;
 
     @ApiProperty({example: "Фастфуд", description: "тип продукта"})
-    readonly type: string ;
+    readonly type_id: number ;
 
     @ApiProperty({example: "21.11", description: "Цена продукта"})
     readonly price: number;
+
+    @ApiProperty({description: "Тип продукта"})
+    readonly foodType: FoodType;
 }

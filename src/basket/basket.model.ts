@@ -3,7 +3,7 @@ import { ApiProperty } from "@nestjs/swagger";
 import { Model, Table, Column, DataType, ForeignKey, BelongsTo, HasMany, PrimaryKey, BelongsToMany } from "sequelize-typescript";
 import { Food } from "src/food/food.model";
 import { User } from "src/users/users.model";
-import { Worker } from "src/worker/worker.model";
+
 import { BasketFood } from "./basket-food.model";
 
 
@@ -35,6 +35,7 @@ export class Basket extends Model<Basket,IBasketCreationAttrs>{
     @BelongsTo(() => User)
     user: User;
 
+    @ApiProperty({ description: "Еда в корзине"})
     @BelongsToMany(() => Food, ()=>BasketFood)
     foods: Food[];
     

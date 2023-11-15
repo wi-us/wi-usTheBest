@@ -37,6 +37,10 @@ export class User extends Model<User,IUserCreationAttrs>{
     @Column({ type: DataType.STRING(64), allowNull: true })
     mail: string;
 
+    @ApiProperty({example: "user_user@mail.ru", description: "Почта пользователя"})
+    @Column({ type: DataType.DECIMAL, allowNull: true })
+    balance: Number;
+
     
     @HasOne(()=>Basket)
     basket: Basket;

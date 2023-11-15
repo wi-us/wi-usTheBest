@@ -2,31 +2,54 @@ import { Injectable } from '@nestjs/common';
 import { User } from './users.model';
 import { InjectModel } from '@nestjs/sequelize';
 import { CreateUserDto } from './dto/create-user.dto';
-import { Basket } from 'src/basket/basket.model';
-import { CreateBasketDto } from 'src/basket/dto/create-basket.dto';
 import { EditUserDto } from './dto/edit-user.dto';
+import { BasketService } from 'src/basket/basket.service';
+import { Sequelize } from 'sequelize-typescript';
 
 @Injectable()
 export class UsersService {
+    
 
     constructor(
         @InjectModel(User) private userRepository: typeof User,
-        @InjectModel(Basket) private basketRepository: typeof Basket,
+        private basketService: BasketService,
+        private sequlize: Sequelize
+       
         
     ){}
 
+    async getUserByTelegramId(telegram_ID: string) {
+        const user = await this.userRepository.findOne({where: {
+            telegram_ID
+        }})
+        return user
+    }
+
     async createUser(dto: CreateUserDto){
-        
-        //Creating user 
-        const user = await this.userRepository.create(dto)
-
-
-        //Creating basket for user
-         await this.basketRepository.create({user_ID: user.id})
+        const transaction = await this.sequlize.transaction()
+        try {
+            
+            //Creating user 
+            let user = await this.userRepository.findOne({
+                where: {telegram_ID: dto.telegram_ID},
+                transaction
+            })
+    
+            if(!user){
+                user = await this.userRepository.create(dto)
+                await this.basketService.createBasket(user.id, transaction)
+                
+            }
+            await transaction.commit();
+            //Creating basket for user
+            
+                         
+            return user;
+        } catch (error) {
+            await transaction.rollback();
+            throw error;
+        }
        
-       
-
-        return user;
     }
 
    async editUserData(dto: EditUserDto){
