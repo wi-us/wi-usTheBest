@@ -17,7 +17,11 @@ export class BasketController {
     @ApiResponse({ status: 200, type: Basket })
     @Post('/add')
     async addItemToCart(@Body() dto: addItemToCartDto) {
-        return this.basketService.addItemToCart(dto);
+        const ormOutput = await this.basketService.addItemToCart(dto);
+        if (!ormOutput) {
+            return null;
+        }
+        return this.formatBasketInfo(ormOutput);
     }
 
     // @ApiOperation({ summary: 'Получить корзину пользователя по id' })

@@ -21,14 +21,17 @@ export class BasketService {
         private sequelize: Sequelize,
     ) {}
 
-    async addItemToCart(dto: addItemToCartDto): Promise<Basket> {
+    async addItemToCart(dto: addItemToCartDto) {
         const transaction = await this.sequelize.transaction();
         try {
             const basket = await this.basketRepository.findOne({
                 where: {
                     user_ID: dto.user_ID,
                 },
-                include: [Food],
+                include: [
+                    { model: BasketFood, include: [Food] },
+                    { model: Food, include: [BasketFood] },
+                ],
                 transaction,
             });
 
