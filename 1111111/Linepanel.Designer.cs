@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             button1 = new Button();
+            richTextBox1 = new RichTextBox();
             SuspendLayout();
             // 
             // button1
@@ -41,11 +42,20 @@
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
             // 
+            // richTextBox1
+            // 
+            richTextBox1.Location = new Point(12, 0);
+            richTextBox1.Name = "richTextBox1";
+            richTextBox1.Size = new Size(379, 464);
+            richTextBox1.TabIndex = 1;
+            richTextBox1.Text = "";
+            // 
             // Linepanel
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(403, 591);
+            Controls.Add(richTextBox1);
             Controls.Add(button1);
             Name = "Linepanel";
             Text = "LinePanel";
@@ -55,5 +65,6 @@
         #endregion
 
         private Button button1;
+        private RichTextBox richTextBox1;
     }
 }

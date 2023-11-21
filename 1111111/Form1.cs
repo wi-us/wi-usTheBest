@@ -22,7 +22,7 @@ namespace _1111111
         {
 
         }
-        public static List<Data> GetApiData(string apiUrl)
+        public static List<Order> GetApiData(string apiUrl)
         {
             using (HttpClient client = new HttpClient())
             {
@@ -31,7 +31,7 @@ namespace _1111111
                 if (response.IsSuccessStatusCode)
                 {
                     string json = response.Content.ReadAsStringAsync().Result;
-                    List<Data> data = JsonConvert.DeserializeObject<List<Data>>(json);
+                    List<Order> data = JsonConvert.DeserializeObject<List<Order>>(json);
                     return data;
                 }
                 else
@@ -41,9 +41,42 @@ namespace _1111111
             }
         }
 
-    
 
-        
+        public class Food
+        {
+            public string id { get; set; }
+            public string name { get; set; }
+            public string picture { get; set; }
+            public string type_id { get; set; }
+            public string price { get; set; }
+            public DateTime createdAt { get; set; }
+            public DateTime updatedAt { get; set; }
+            public OrderItem OrderItem { get; set; }
+        }
+
+        public class OrderItem
+        {
+            public string id { get; set; }
+            public string order_ID { get; set; }
+            public string food_ID { get; set; }
+            public string quantity { get; set; }
+        }
+
+        public class Order
+        {
+            public string id { get; set; }
+            public DateTime date { get; set; }
+            public string status { get; set; }
+            public string price { get; set; }
+            public string user_id { get; set; }
+            public string worker_ID { get; set; }
+            public DateTime createdAt { get; set; }
+            public DateTime updatedAt { get; set; }
+            public object Status { get; set; }
+            public List<Food> foods { get; set; }
+        }
+
+
         public class Data
         {
             public int id { get; set; }
@@ -64,7 +97,7 @@ namespace _1111111
             
             Linepanel linepanel = new Linepanel();
             linepanel.Show();
-            this.Hide();
+            //this.Hide();
 
         }
 
@@ -82,8 +115,8 @@ namespace _1111111
 
         private void button4_Click(object sender, EventArgs e)
         {
-        List<Data> parsed = GetApiData("https://c0bf-109-198-122-38.ngrok-free.app/users");
-            richTextBox1.AppendText(parsed[0].telegram_ID);
+        List<Order> parsed = GetApiData("https://291e-109-198-122-38.ngrok-free.app/order");
+            richTextBox1.AppendText(parsed[0].id);
         }
         private void label3_Click(object sender, EventArgs e)
         {
