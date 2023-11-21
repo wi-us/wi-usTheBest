@@ -22,6 +22,7 @@ import { AuthModule } from './auth/auth.module';
 import { BasketFood } from './basket/basket-food.model';
 import { OrderHistory } from './order/order-history.model';
 import { OrderItem } from './order/order-item.model';
+import { OrderModule } from './order/order.module';
 
 
 
@@ -57,7 +58,8 @@ import { OrderItem } from './order/order-item.model';
     FoodModule,
     RolesModule,
     WorkerModule,
-    AuthModule,  
+    AuthModule,
+    OrderModule,  
   ],
   controllers: [],
   providers: [],

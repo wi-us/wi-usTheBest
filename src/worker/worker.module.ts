@@ -7,18 +7,17 @@ import { WorkerStatus } from './worker-status.model';
 import { RolesModule } from 'src/roles/roles.module';
 import { Worker } from './worker.model';
 import { AuthModule } from 'src/auth/auth.module';
+import { OrderModule } from 'src/order/order.module';
 
 @Module({
-  controllers: [WorkerController],
-  providers: [WorkerService],
-  imports:[
-    SequelizeModule.forFeature([Worker, Role, WorkerStatus]),
-    RolesModule,
-    forwardRef(()=>AuthModule),
-  ],
-  exports:[
-    WorkerService,
-  ]
-
+    controllers: [WorkerController],
+    providers: [WorkerService],
+    imports: [
+        SequelizeModule.forFeature([Worker, Role, WorkerStatus]),
+        RolesModule,
+        OrderModule,
+        forwardRef(() => AuthModule),
+    ],
+    exports: [WorkerService],
 })
 export class WorkerModule {}
