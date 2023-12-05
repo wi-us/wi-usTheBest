@@ -6,13 +6,17 @@ using System.Net; // cookie
 using System.Net.Http;
 //using Microsoft.AspNet.WebApi.Client;
 using System.Xml.Linq;
+using static _1111111.Form1;
+using System.Windows.Forms;
 
 namespace _1111111
 {
- 
- 
+
+
     public partial class Form1 : Form
     {
+        Linepanel form = new Linepanel();
+        List<Order> orders;
         public Form1()
         {
             InitializeComponent();
@@ -90,11 +94,12 @@ namespace _1111111
 
         }
 
-        
+
+
 
         private void button1_Click(object sender, EventArgs e)
         {
-            
+
             Linepanel linepanel = new Linepanel();
             linepanel.Show();
             //this.Hide();
@@ -115,12 +120,58 @@ namespace _1111111
 
         private void button4_Click(object sender, EventArgs e)
         {
-        List<Order> parsed = GetApiData("https://291e-109-198-122-38.ngrok-free.app/order");
-            richTextBox1.AppendText(parsed[0].id);
+            timer1.Enabled = false;
         }
         private void label3_Click(object sender, EventArgs e)
         {
 
+        }
+
+
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            form.Show();
+            int a = listBox1.SelectedIndex;
+
+            if (a >= 0)
+            {
+                Order selectedOrder = orders[a];
+                form.dataGridView1.Columns.Clear();
+                form.dataGridView1.Columns.Add("Name", "Food Name");
+                form.dataGridView1.Columns.Add("Quantity", "Quantity");
+                form.dataGridView1.Columns.Add("Price", "Price");
+
+                // Populate rows
+                form.dataGridView1.Rows.Clear();
+                foreach (var food in selectedOrder.foods)
+                {
+                    form.dataGridView1.Rows.Add(food.name, food.OrderItem.quantity, food.price);
+                }
+                //dataGridView1.DataSource = selectedOrder.foods;
+                //MessageBox.Show(orders.ToString());
+
+
+            }
+
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            listBox1.Items.Clear();
+
+            {
+                {
+
+                    orders = GetApiData("https://f1bd-109-198-122-38.ngrok-free.app/order");
+                    foreach (Order order in orders)
+                    {
+                        listBox1.Items.Add($"order{order.id}");
+
+                    }
+
+                }
+            }
         }
     }
 }

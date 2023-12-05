@@ -29,7 +29,8 @@
         private void InitializeComponent()
         {
             button1 = new Button();
-            richTextBox1 = new RichTextBox();
+            dataGridView1 = new DataGridView();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
             // button1
@@ -42,29 +43,33 @@
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
             // 
-            // richTextBox1
+            // dataGridView1
             // 
-            richTextBox1.Location = new Point(12, 0);
-            richTextBox1.Name = "richTextBox1";
-            richTextBox1.Size = new Size(379, 464);
-            richTextBox1.TabIndex = 1;
-            richTextBox1.Text = "";
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Location = new Point(12, 12);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.RowHeadersWidth = 62;
+            dataGridView1.RowTemplate.Height = 33;
+            dataGridView1.Size = new Size(360, 452);
+            dataGridView1.TabIndex = 1;
+            dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             // 
             // Linepanel
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(403, 591);
-            Controls.Add(richTextBox1);
+            Controls.Add(dataGridView1);
             Controls.Add(button1);
             Name = "Linepanel";
             Text = "LinePanel";
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
 
         private Button button1;
-        private RichTextBox richTextBox1;
+        public DataGridView dataGridView1;
     }
 }

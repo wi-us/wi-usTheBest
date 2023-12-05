@@ -28,26 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            button1 = new Button();
+            components = new System.ComponentModel.Container();
             label1 = new Label();
             button2 = new Button();
             label3 = new Label();
-            button3 = new Button();
-            richTextBox1 = new RichTextBox();
             button4 = new Button();
+            listBox1 = new ListBox();
+            timer1 = new System.Windows.Forms.Timer(components);
             SuspendLayout();
-            // 
-            // button1
-            // 
-            button1.BackColor = Color.Green;
-            button1.Cursor = Cursors.Hand;
-            button1.Location = new Point(12, 458);
-            button1.Name = "button1";
-            button1.Size = new Size(176, 107);
-            button1.TabIndex = 0;
-            button1.Text = "Взять заказ";
-            button1.UseVisualStyleBackColor = false;
-            button1.Click += button1_Click;
             // 
             // label1
             // 
@@ -62,7 +50,7 @@
             // 
             button2.BackColor = Color.Transparent;
             button2.Cursor = Cursors.Hand;
-            button2.Location = new Point(12, 345);
+            button2.Location = new Point(12, 465);
             button2.Name = "button2";
             button2.Size = new Size(360, 107);
             button2.TabIndex = 2;
@@ -80,26 +68,6 @@
             label3.Text = "Баланс: 0000.00";
             label3.Click += label3_Click;
             // 
-            // button3
-            // 
-            button3.BackColor = Color.Red;
-            button3.Cursor = Cursors.Hand;
-            button3.Location = new Point(194, 458);
-            button3.Name = "button3";
-            button3.Size = new Size(178, 107);
-            button3.TabIndex = 6;
-            button3.Text = "Не брать заказ";
-            button3.UseVisualStyleBackColor = false;
-            // 
-            // richTextBox1
-            // 
-            richTextBox1.Location = new Point(12, 74);
-            richTextBox1.Name = "richTextBox1";
-            richTextBox1.Size = new Size(360, 265);
-            richTextBox1.TabIndex = 7;
-            richTextBox1.Text = "";
-            richTextBox1.TextChanged += richTextBox1_TextChanged;
-            // 
             // button4
             // 
             button4.Location = new Point(12, 41);
@@ -110,19 +78,33 @@
             button4.UseVisualStyleBackColor = true;
             button4.Click += button4_Click;
             // 
+            // listBox1
+            // 
+            listBox1.FormattingEnabled = true;
+            listBox1.ItemHeight = 25;
+            listBox1.Location = new Point(12, 80);
+            listBox1.Name = "listBox1";
+            listBox1.Size = new Size(360, 379);
+            listBox1.TabIndex = 9;
+            listBox1.SelectedIndexChanged += listBox1_SelectedIndexChanged;
+            // 
+            // timer1
+            // 
+            timer1.Enabled = true;
+            timer1.Interval = 10000;
+            timer1.Tick += timer1_Tick;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.DimGray;
             ClientSize = new Size(407, 584);
+            Controls.Add(listBox1);
             Controls.Add(button4);
-            Controls.Add(richTextBox1);
-            Controls.Add(button3);
             Controls.Add(label3);
             Controls.Add(button2);
             Controls.Add(label1);
-            Controls.Add(button1);
             FormBorderStyle = FormBorderStyle.FixedToolWindow;
             Name = "Form1";
             Text = "Form1";
@@ -132,13 +114,11 @@
         }
 
         #endregion
-
-        private Button button1;
         private Label label1;
         private Button button2;
         private Label label3;
-        private Button button3;
-        private RichTextBox richTextBox1;
         private Button button4;
+        private ListBox listBox1;
+        private System.Windows.Forms.Timer timer1;
     }
 }

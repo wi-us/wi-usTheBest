@@ -22,8 +22,8 @@ namespace _1111111
         private void Linepanel_Load(object sender, EventArgs e)
         {
             {
-                List<Order> parsed = GetApiData("https://291e-109-198-122-38.ngrok-free.app/order");
-                richTextBox1.AppendText(parsed[0].id);
+                //List<Order> parsed = GetApiData("https://f1bd-109-198-122-38.ngrok-free.app/order");
+                //richTextBox1.AppendText(parsed[0].id);
             }
         }
 
@@ -32,6 +32,21 @@ namespace _1111111
             this.Close();
             Form1 fr1 = new Form1();
             fr1.Show();
+        }
+
+        private void richTextBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        public void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

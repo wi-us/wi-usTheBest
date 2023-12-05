@@ -23,7 +23,7 @@ namespace _1111111
         private void History_Load(object sender, EventArgs e)
         {
             {
-                orders = GetApiData("https://291e-109-198-122-38.ngrok-free.app/order");
+                orders = GetApiData("https://f1bd-109-198-122-38.ngrok-free.app/order");
                 foreach (Order order in orders)
                 {
                     listBox1.Items.Add($"order{order.id}");
