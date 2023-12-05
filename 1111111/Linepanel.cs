@@ -13,6 +13,7 @@ namespace _1111111
 {
     public partial class Linepanel : Form
     {
+        
         public Linepanel()
         {
             InitializeComponent();
@@ -31,7 +32,11 @@ namespace _1111111
         {
             this.Close();
             Form1 fr1 = new Form1();
-            fr1.Show();
+            fr1.Show(); 
+
+
+            
+            
         }
 
         private void richTextBox1_TextChanged(object sender, EventArgs e)
@@ -47,6 +52,16 @@ namespace _1111111
         public void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void Linepanel_Load_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Linepanel_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            
         }
     }
 }

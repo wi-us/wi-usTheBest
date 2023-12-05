@@ -63,6 +63,8 @@
             Controls.Add(button1);
             Name = "Linepanel";
             Text = "LinePanel";
+            FormClosing += Linepanel_FormClosing;
+            Load += Linepanel_Load_1;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
         }

@@ -120,7 +120,7 @@ namespace _1111111
 
         private void button4_Click(object sender, EventArgs e)
         {
-            timer1.Enabled = false;
+            timer1.Enabled = !timer1.Enabled;
         }
         private void label3_Click(object sender, EventArgs e)
         {
@@ -172,6 +172,11 @@ namespace _1111111
 
                 }
             }
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+
         }
     }
 }

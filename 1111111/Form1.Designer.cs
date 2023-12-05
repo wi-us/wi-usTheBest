@@ -91,7 +91,7 @@
             // timer1
             // 
             timer1.Enabled = true;
-            timer1.Interval = 10000;
+            timer1.Interval = 3000;
             timer1.Tick += timer1_Tick;
             // 
             // Form1
@@ -108,6 +108,7 @@
             FormBorderStyle = FormBorderStyle.FixedToolWindow;
             Name = "Form1";
             Text = "Form1";
+            FormClosing += Form1_FormClosing;
             Load += Form1_Load;
             ResumeLayout(false);
             PerformLayout();
