@@ -30,3 +30,5 @@ C:\Users\nkoro\source\repos\1111111\1111111\bin\Debug\net7.0-windows\Newtonsoft.
 C:\Users\nkoro\source\repos\1111111\1111111\bin\Debug\net7.0-windows\System.Net.Http.Formatting.dll
 C:\Users\nkoro\source\repos\1111111\1111111\bin\Debug\net7.0-windows\Newtonsoft.Json.Bson.dll
 C:\Users\nkoro\source\repos\1111111\1111111\obj\Debug\net7.0-windows\_1111111.Form1.resources
+C:\Users\nkoro\source\repos\1111111\1111111\obj\Debug\net7.0-windows\_1111111.Resourses..resources
+C:\Users\nkoro\source\repos\1111111\1111111\obj\Debug\net7.0-windows\DeliveryApp.Resourses.Window_Authorization.resources

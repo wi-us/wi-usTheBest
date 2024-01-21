@@ -1,4 +1,7 @@
-﻿using System;
+﻿using DeliveryApp.Resourses;
+using Newtonsoft.Json.Linq;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -8,6 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static _1111111.Form1;
+using static DeliveryApp.Resourses.API;
 
 namespace _1111111
 {
@@ -23,16 +27,18 @@ namespace _1111111
         private void Linepanel_Load(object sender, EventArgs e)
         {
             {
-                //List<Order> parsed = GetApiData("https://f1bd-109-198-122-38.ngrok-free.app/order");
+                //List<Order> parsed = GetApiData("https://3424-109-198-122-38.ngrok-free.app/order");
                 //richTextBox1.AppendText(parsed[0].id);
             }
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            this.Close();
+            //сюда доделать obj1.form1
+            Connection.DoPOST($"{API.API_GetPathTo(API.Roots.Finish)}", JsonConvert.SerializeObject(JObject.FromObject("")));
+            this.Hide();
             Form1 fr1 = new Form1();
-            fr1.Show(); 
+           // fr1.Show(); 
 
 
             

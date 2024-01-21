@@ -8,6 +8,7 @@ using System.Net.Http;
 using System.Xml.Linq;
 using static _1111111.Form1;
 using System.Windows.Forms;
+using DeliveryApp.Resourses;
 
 namespace _1111111
 {
@@ -22,9 +23,9 @@ namespace _1111111
             InitializeComponent();
 
         }
-        private void Form1_Load(object sender, EventArgs e)
+        public void Form1_Load(object sender, EventArgs e)
         {
-
+            this.Visible = true;
         }
         public static List<Order> GetApiData(string apiUrl)
         {
@@ -64,6 +65,16 @@ namespace _1111111
             public string order_ID { get; set; }
             public string food_ID { get; set; }
             public string quantity { get; set; }
+            public string FormJSONtoPOST()
+            {
+                var jsonObject = new
+                {
+                    orderid = this.order_ID
+                    
+                };
+                var jsonString = JObject.FromObject(jsonObject).ToString();
+                return jsonString;
+            }
         }
 
         public class Order
@@ -79,7 +90,7 @@ namespace _1111111
             public object Status { get; set; }
             public List<Food> foods { get; set; }
         }
-
+        
 
         public class Data
         {
@@ -127,15 +138,20 @@ namespace _1111111
 
         }
 
+        public object obj1;
 
 
-        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        public void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            form.Show();
+            //form.Show();
             int a = listBox1.SelectedIndex;
-
+            string id = listBox1.Text.Replace("order", "");
+            obj1 = new { orderId = id };
+            
             if (a >= 0)
             {
+                Connection.DoPOST($"{API.API_GetPathTo(API.Roots.Worker)}", JsonConvert.SerializeObject(JObject.FromObject(obj1)));
+                form.Show();
                 Order selectedOrder = orders[a];
                 form.dataGridView1.Columns.Clear();
                 form.dataGridView1.Columns.Add("Name", "Food Name");
@@ -144,6 +160,7 @@ namespace _1111111
 
                 // Populate rows
                 form.dataGridView1.Rows.Clear();
+                
                 foreach (var food in selectedOrder.foods)
                 {
                     form.dataGridView1.Rows.Add(food.name, food.OrderItem.quantity, food.price);
@@ -162,12 +179,22 @@ namespace _1111111
 
             {
                 {
-
-                    orders = GetApiData("https://f1bd-109-198-122-38.ngrok-free.app/order");
-                    foreach (Order order in orders)
+                    try
                     {
-                        listBox1.Items.Add($"order{order.id}");
+                        orders = Connection.DoGet($"{API.API_GetPathTo(API.Roots.Order1)}");
+                        foreach (Order order in orders)
+                        {
+                            listBox1.Items.Add($"order{order.id}");
 
+                        }
+
+
+                    }
+                    catch 
+                    { 
+                        listBox1.Items.Add("нет заказов");
+                        
+                        listBox1.Enabled = false;
                     }
 
                 }

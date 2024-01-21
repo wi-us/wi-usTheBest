@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DeliveryApp.Resourses;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -23,11 +24,22 @@ namespace _1111111
         private void History_Load(object sender, EventArgs e)
         {
             {
-                orders = GetApiData("https://f1bd-109-198-122-38.ngrok-free.app/order");
-                foreach (Order order in orders)
+                try
                 {
-                    listBox1.Items.Add($"order{order.id}");
+                    orders = Connection.DoGet($"{API.API_GetPathTo(API.Roots.Order)}");
+                    foreach (Order order in orders)
+                    {
+                        listBox1.Items.Add($"order{order.id}");
 
+                    }
+
+
+                }
+                catch
+                {
+                    listBox1.Items.Add("нет заказов");
+
+                    listBox1.Enabled = false;
                 }
 
             }
