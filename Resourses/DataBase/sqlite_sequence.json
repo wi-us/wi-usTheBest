@@ -1,0 +1,34 @@
+[
+    {
+        "name": "Food",
+        "seq": 2
+    },
+    {
+        "name": "Food_Type",
+        "seq": 5
+    },
+    {
+        "name": "Basket",
+        "seq": 1
+    },
+    {
+        "name": "Order",
+        "seq": 1
+    },
+    {
+        "name": "Order_Status",
+        "seq": 3
+    },
+    {
+        "name": "User",
+        "seq": 2
+    },
+    {
+        "name": "Role",
+        "seq": 3
+    },
+    {
+        "name": "Worker",
+        "seq": 2
+    }
+]
