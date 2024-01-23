@@ -6,12 +6,9 @@ import {
     DataType,
     ForeignKey,
     BelongsTo,
-    PrimaryKey,
-    HasOne,
     BelongsToMany,
     HasMany,
 } from 'sequelize-typescript';
-import { Basket } from 'src/basket/basket.model';
 import { Status } from 'src/status/status.model';
 import { User } from 'src/users/users.model';
 import { Worker } from 'src/worker/worker.model';
@@ -47,6 +44,7 @@ export class Order extends Model<Order, IOrderCreationAttrs> {
 
     @ApiProperty({ example: '1', description: 'id статуса заказа' })
     @Column({ type: DataType.BIGINT, allowNull: false, defaultValue: 0 })
+    @ForeignKey(() => Status)
     status: number;
 
     @ApiProperty({ example: '1111.23', description: 'Стоимость заказа' })
@@ -56,7 +54,7 @@ export class Order extends Model<Order, IOrderCreationAttrs> {
     @ApiProperty({ example: '1', description: 'id юзера который сделал заказ' })
     @Column({ type: DataType.BIGINT, allowNull: false })
     @ForeignKey(() => User)
-    user_id: Number;
+    user_id: number;
 
     @ApiProperty({ example: '2', description: 'ID курьера взявшего заказ' })
     @Column({ type: DataType.BIGINT, allowNull: true })
@@ -69,7 +67,7 @@ export class Order extends Model<Order, IOrderCreationAttrs> {
     @BelongsTo(() => User)
     user: User;
 
-    @BelongsTo(() => Status, 'Status')
+    @BelongsTo(() => Status)
     orderStatus: Status;
 
     @BelongsTo(() => Worker)

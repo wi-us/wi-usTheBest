@@ -10,6 +10,7 @@ import { OrderItem } from './order-item.model';
 import { BasketFood } from 'src/basket/basket-food.model';
 import { Status } from 'src/status/status.model';
 import { createOrderStatusDto } from './dto/create-order-status.dto';
+import { Transaction } from 'sequelize';
 
 @Injectable()
 export class OrderService {
@@ -25,6 +26,11 @@ export class OrderService {
         private sequelize: Sequelize,
     ) {}
 
+    async getAllOrders() {
+        const orders = await this.orderRepository.findAll({ include: Food });
+        return orders;
+    }
+
     async makeOrder(userId: number) {
         const transaction = await this.sequelize.transaction();
 
@@ -33,7 +39,10 @@ export class OrderService {
                 userId,
             );
             const user = await this.userService.getUserById(userId);
-            if (user.balance < userBasket.price) {
+            if (
+                parseFloat(user.balance.toString()) <
+                parseFloat(user.balance.toString())
+            ) {
                 return new HttpException(
                     'У пользователя недостаточно баланса ',
                     HttpStatus.BAD_REQUEST,
@@ -43,12 +52,19 @@ export class OrderService {
             const order = await this.orderRepository.create(
                 {
                     date: new Date(),
-                    status: 0, // Set the default status as needed
+
                     price: userBasket.price, // Initialize the price, you'll update it later
                     user_id: userId,
                 },
                 { transaction },
             );
+            // const status = await this.orderStatusRepository.findOne({
+            //     where: {
+            //         type: "Активный"
+            //     }
+            // })
+            // await order.$set("status", status, {transaction})
+            // await order.$add("Status")
 
             await order.$add('foods', userBasket.foods, {
                 transaction,
@@ -79,7 +95,8 @@ export class OrderService {
 
             await transaction.commit();
             // return userBasket;
-            return order;
+            const order_data = await this.getOrderById(order.id);
+            return order_data;
         } catch (error) {
             // await transaction.rollback();
             console.log(error);
@@ -89,14 +106,75 @@ export class OrderService {
             );
         }
     }
+    async getAllOrderStatus() {
+        const statuses = await this.orderStatusRepository.findAll();
+        return statuses;
+    }
+    async editOrderStatus(statusId: number, dto: createOrderStatusDto) {
+        const status = await this.orderStatusRepository.findByPk(statusId);
+        if (!status) {
+            return this.throwOrderStatusNotExist();
+        }
+        await status.update(dto);
+        return status;
+    }
+    async deleteOrderStatusById(statusId: number) {
+        const orderStatus = await this.orderStatusRepository.findByPk(statusId);
+        if (!orderStatus) {
+            this.throwOrderStatusNotExist();
+        }
+        await orderStatus.destroy();
+        return;
+    }
 
     async getOrderById(orderId: number) {
         const order = await this.orderRepository.findByPk(orderId, {
             include: { model: OrderItem, include: [Food] },
         });
-
         if (!order) {
             throw new HttpException('Order not found', HttpStatus.NOT_FOUND);
+        }
+        return order;
+    }
+    async deleteOrderById(orderId: number) {
+        const transaction: Transaction = await this.sequelize.transaction();
+        try {
+            const order = await this.orderRepository.findByPk(orderId);
+            if (!order) {
+                await transaction.rollback();
+                return this.throwOrderNotExist();
+            }
+            const orderItems = await this.orderItemRepository.findAll({
+                where: { order_ID: orderId },
+                transaction,
+            });
+            await this.orderItemRepository.destroy({
+                where: { order_ID: orderId }, // Replace with the actual condition to match OrderItems with the order
+                transaction,
+            });
+            await this.orderRepository.destroy({
+                where: { id: orderId },
+                transaction,
+            });
+
+            await transaction.commit();
+            return;
+        } catch (error) {
+            console.log(error);
+
+            await transaction.rollback();
+        }
+    }
+
+    async getOrdersByUserId(userId: number) {
+        const order = await this.orderRepository.findAll({
+            where: {
+                user_id: userId,
+            },
+            include: { model: OrderItem, include: [Food] },
+        });
+
+        if (!order) {
         }
         return order;
     }
@@ -122,5 +200,27 @@ export class OrderService {
     async createOrderStatus(dto: createOrderStatusDto) {
         const orderStatus = await this.orderStatusRepository.create(dto);
         return orderStatus;
+    }
+
+    async getOrderStatusByValue(value: string) {
+        const orderStatus: Status = await this.orderStatusRepository.findOne({
+            where: {
+                type: value,
+            },
+        });
+        return orderStatus;
+    }
+
+    throwOrderStatusNotExist() {
+        return new HttpException(
+            'Status with that id not found',
+            HttpStatus.NOT_FOUND,
+        );
+    }
+    throwOrderNotExist() {
+        return new HttpException(
+            'Order with that id not found',
+            HttpStatus.NOT_FOUND,
+        );
     }
 }

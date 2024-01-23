@@ -60,10 +60,10 @@ export class User extends Model<User, IUserCreationAttrs> {
     mail: string;
 
     @ApiProperty({
-        example: 'user_user@mail.ru',
-        description: 'Почта пользователя',
+        example: 20000,
+        description: 'Баланс',
     })
-    @Column({ type: DataType.DECIMAL, allowNull: true })
+    @Column({ type: DataType.DECIMAL, allowNull: true, defaultValue: 0 })
     balance: number;
 
     @HasOne(() => Basket)

@@ -8,15 +8,12 @@ import { Food } from 'src/food/food.model';
 import { FoodModule } from 'src/food/food.module';
 
 @Module({
-  controllers: [BasketController],
-  providers: [BasketService],
-  imports:[
-    
-    SequelizeModule.forFeature([Basket, Food, BasketFood]),
-    FoodModule,
-  ],
-  exports:[
-    BasketService,
-  ]
+    controllers: [BasketController],
+    providers: [BasketService],
+    imports: [
+        SequelizeModule.forFeature([Basket, Food, BasketFood]),
+        FoodModule,
+    ],
+    exports: [BasketService],
 })
 export class BasketModule {}

@@ -1,6 +1,10 @@
 import { Module } from '@nestjs/common';
 import { OrderService } from './order.service';
-import { OrderController, OrderStatusController } from './order.controller';
+import {
+    ActiveController,
+    OrderController,
+    OrderStatusController,
+} from './order.controller';
 import { SequelizeModule } from '@nestjs/sequelize';
 import { Order } from './order.model';
 import { BasketModule } from 'src/basket/basket.module';
@@ -11,7 +15,7 @@ import { Status } from 'src/status/status.model';
 
 @Module({
     providers: [OrderService],
-    controllers: [OrderController, OrderStatusController],
+    controllers: [OrderController, OrderStatusController, ActiveController],
     imports: [
         SequelizeModule.forFeature([Order, OrderItem, Status]),
         BasketModule,

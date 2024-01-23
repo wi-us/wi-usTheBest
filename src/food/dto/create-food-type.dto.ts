@@ -1,7 +1,6 @@
-import { ApiProperty } from "@nestjs/swagger";
+import { ApiProperty } from '@nestjs/swagger';
 
-export class CreateFoodTypeDto{
-
-    @ApiProperty({example: "ФастФуд"})
+export class CreateFoodTypeDto {
+    @ApiProperty({ example: 'ФастФуд' })
     readonly type: string;
 }

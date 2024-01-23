@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { User } from './users.model';
 import { InjectModel } from '@nestjs/sequelize';
 import { CreateUserDto } from './dto/create-user.dto';
@@ -19,6 +19,22 @@ export class UsersService {
             where: {
                 telegram_ID,
             },
+        });
+        return user;
+    }
+    async addBalanceByUserTelegramId(telegramId: string) {
+        const user = await this.userRepository.findOne({
+            where: { telegram_ID: telegramId },
+        });
+        if (!user) {
+            throw new HttpException(
+                'Пользователь не найден',
+                HttpStatus.NOT_FOUND,
+            );
+        }
+
+        await user.update({
+            balance: Number(Number(user.balance) + Number(20000)),
         });
         return user;
     }

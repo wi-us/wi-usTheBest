@@ -24,8 +24,6 @@ import { OrderHistory } from './order/order-history.model';
 import { OrderItem } from './order/order-item.model';
 import { OrderModule } from './order/order.module';
 
-
-
 // const store = Postgres({
 // 	host: "127.0.0.1",
 // 	database: "telegraf-test",
@@ -33,35 +31,46 @@ import { OrderModule } from './order/order.module';
 // 	password: "hunter2",
 // });
 
-
 @Module({
- 
-  imports:[
-    ConfigModule.forRoot({
-      envFilePath: `.${process.env.NODE_ENV}.env`
-    }),
-    SequelizeModule.forRoot({
-      dialect: 'postgres',
-        host: process.env.POSTGRES_HOST,
-        port: Number(process.env.POSTGRES_PORT),
-        username: process.env.POSTGRES_USER,
-        password: process.env.POSTGRES_PASSWORD,
-        database: process.env.POSTGRES_DB,
-      models: [User, Basket, Order, FoodType, Food, Status, Worker, Role, WorkerStatus, BasketFood, OrderHistory, OrderItem],
-      autoLoadModels: true,
-      dialectOptions: { decimalNumbers: true }
-    //  synchronize: true,
-    //  sync: {force: true},
-      }),
-    UsersModule,
-    BasketModule,
-    FoodModule,
-    RolesModule,
-    WorkerModule,
-    AuthModule,
-    OrderModule,  
-  ],
-  controllers: [],
-  providers: [],
+    imports: [
+        ConfigModule.forRoot({
+            envFilePath: `.${process.env.NODE_ENV}.env`,
+        }),
+        SequelizeModule.forRoot({
+            dialect: 'postgres',
+            host: process.env.POSTGRES_HOST,
+            port: Number(process.env.POSTGRES_PORT),
+            username: process.env.POSTGRES_USER,
+            password: process.env.POSTGRES_PASSWORD,
+            database: process.env.POSTGRES_DB,
+            models: [
+                User,
+                Basket,
+                Order,
+                FoodType,
+                Food,
+                Status,
+                Worker,
+                Role,
+                WorkerStatus,
+                BasketFood,
+                OrderHistory,
+                OrderItem,
+            ],
+            autoLoadModels: true,
+            dialectOptions: { decimalNumbers: true },
+            //  synchronize: true,
+            //  sync: {force: true},
+        }),
+        UsersModule,
+        BasketModule,
+        FoodModule,
+        RolesModule,
+        WorkerModule,
+        AuthModule,
+        OrderModule,
+    ],
+    controllers: [],
+    providers: [],
 })
 export class AppModule {}

@@ -73,6 +73,30 @@ export class BasketService {
         }
     }
 
+    async clearBasket(userId: number) {
+        const transaction = await this.sequelize.transaction();
+        try {
+            //FIX THIS FUCKING CODE
+            const basket = await this.getBasketByUserId(userId);
+            await Promise.all([
+                basket.basketFood.forEach(
+                    async (basketFoodItem: BasketFood) => {
+                        await basketFoodItem.update('quantity', 0, {
+                            transaction,
+                        });
+                    },
+                ),
+            ]);
+
+            await basket.$set('foods', [], { transaction });
+            await transaction.commit();
+            return;
+        } catch (error) {
+            await transaction.rollback();
+            throw error;
+        }
+    }
+
     async createBasket(
         user_ID: number,
         transaction: Transaction,

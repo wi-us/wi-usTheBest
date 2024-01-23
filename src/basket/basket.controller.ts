@@ -5,6 +5,7 @@ import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { addItemToCartDto } from './dto/add-food-to-cart.dto';
 import { BasketService } from './basket.service';
 import { FormattedBasketDto } from './dto/formated-basket.dto';
+import { ResponseBasketAddition } from './dto/response-basket.dto';
 
 @ApiTags('Basket')
 @Controller('basket')
@@ -14,7 +15,7 @@ export class BasketController {
     @ApiOperation({
         summary: 'Добавить еду в корзину по telegram_ID пользователя',
     })
-    @ApiResponse({ status: 200, type: Basket })
+    @ApiResponse({ status: 200, type: FormattedBasketDto })
     @Post('/add')
     async addItemToCart(@Body() dto: addItemToCartDto) {
         const ormOutput = await this.basketService.addItemToCart(dto);
@@ -23,13 +24,12 @@ export class BasketController {
         }
         return this.formatBasketInfo(ormOutput);
     }
+    @ApiResponse({ status: 200, type: FormattedBasketDto })
+    @Post('/clear/:userId')
+    async clearItemsFromBasket(@Param('userId') userId: number) {
+        return await this.basketService.clearBasket(userId);
+    }
 
-    // @ApiOperation({ summary: 'Получить корзину пользователя по id' })
-    // @ApiResponse({ status: 200, type: Basket })
-    // @Get('/:id')
-    // async getBasketByUserId(@Param('id') id: number) {
-    //     return this.basketService.getBasketInfoByUserId(id);
-    // }
     @ApiOperation({ summary: 'Получить корзину пользователя по id' })
     @ApiResponse({ status: 200, type: FormattedBasketDto })
     @Get('/:userId')

@@ -1,16 +1,14 @@
-import { Length } from "sequelize-typescript";
+import { Length } from 'sequelize-typescript';
 
-export class EditUserDto{
-
+export class EditUserDto {
     readonly id: number;
 
-    @Length({max: 64})
+    @Length({ max: 64 })
     readonly mail?: string;
-    
-    @Length({max: 16})
+
+    @Length({ max: 16 })
     readonly phone?: string;
 
     readonly x?: number;
-    readonly y?: number;    
-
+    readonly y?: number;
 }
