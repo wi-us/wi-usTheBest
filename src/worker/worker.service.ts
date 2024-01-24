@@ -88,7 +88,7 @@ export class WorkerService {
         }
 
         await order.$set('orderStatus', finishStatus);
-        return order;
+        // return order;
     }
 
     async addRole(dto: addRoleDto) {

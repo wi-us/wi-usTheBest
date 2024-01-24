@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import { Basket } from './basket.model';
 import { addItemToCartDto } from './dto/add-food-to-cart.dto';
@@ -24,49 +24,105 @@ export class BasketService {
     async addItemToCart(dto: addItemToCartDto) {
         const transaction = await this.sequelize.transaction();
         try {
+            // const basket = await this.basketRepository.findOne({
+            //     where: {
+            //         user_ID: dto.user_ID,
+            //     },
+            //     include: [
+            //         { model: BasketFood, include: [Food] },
+            //         { model: Food, include: [BasketFood] },
+            //     ],
+            //     transaction,
+            // });
+
+            // const foodItem = await this.foodService.getFoodByName(dto.foodName);
+
+            // if (!basket.foods.includes(foodItem)) {
+            //     await basket.$set('foods', [...basket.foods, foodItem], {
+            //         transaction,
+            //     });
+
+            //     const basketPrice = Number(basket.price);
+            //     const foodItemPrice = Number(foodItem.price);
+            //     console.log(basketPrice, foodItemPrice);
+            //     await basket.update(
+            //         { price: basketPrice + foodItemPrice },
+            //         { transaction },
+            //     );
+            // }
+            // const basketFoodItem = await this.basketFoodRepository.findOne({
+            //     where: {
+            //         basket_ID: basket.id,
+            //         food_ID: foodItem.id,
+            //     },
+            //     transaction,
+            // });
+            // await basketFoodItem.update(
+            //     {
+            //         quantity: Number(basketFoodItem.quantity) + 1,
+            //     },
+            //     {
+            //         transaction,
+            //     },
+            // );
+            // await transaction.commit();
+            // return basket;
             const basket = await this.basketRepository.findOne({
-                where: {
-                    user_ID: dto.user_ID,
-                },
-                include: [
-                    { model: BasketFood, include: [Food] },
-                    { model: Food, include: [BasketFood] },
-                ],
+                where: { user_ID: dto.user_ID },
+                include: { model: BasketFood, include: [Food] },
                 transaction,
             });
 
+            if (!basket) {
+                throw new NotFoundException('Basket not found');
+            }
+
             const foodItem = await this.foodService.getFoodByName(dto.foodName);
+            if (!foodItem) {
+                throw new NotFoundException('Food item not found');
+            }
 
-            if (!basket.foods.includes(foodItem)) {
-                await basket.$set('foods', [...basket.foods, foodItem], {
-                    transaction,
-                });
-                console.log(typeof basket.price, foodItem.price);
-                const basketPrice = Number(basket.price);
-                const foodItemPrice = Number(foodItem.price);
+            let basketFoodItem = await this.basketFoodRepository.findOne({
+                where: { basket_ID: basket.id, food_ID: foodItem.id },
+                transaction,
+            });
 
-                await basket.update(
-                    { price: basketPrice + foodItemPrice },
+            if (!basketFoodItem) {
+                basketFoodItem = await this.basketFoodRepository.create(
+                    {
+                        basket_ID: basket.id,
+                        food_ID: foodItem.id,
+                        quantity: 1,
+                    },
+                    { transaction },
+                );
+            } else {
+                await basketFoodItem.update(
+                    { quantity: Number(basketFoodItem.quantity) + 1 },
                     { transaction },
                 );
             }
-            const basketFoodItem = await this.basketFoodRepository.findOne({
-                where: {
-                    basket_ID: basket.id,
-                    food_ID: foodItem.id,
-                },
-                transaction,
-            });
-            await basketFoodItem.update(
+
+            const basketPrice = parseFloat(basket.price.toString());
+            const foodItemPrice = parseFloat(foodItem.price.toString());
+            console.log(basketPrice, foodItemPrice);
+            await basket.update(
                 {
-                    quantity: Number(basketFoodItem.quantity) + 1,
+                    price: parseFloat(
+                        (Number(basketPrice) + Number(foodItemPrice)).toFixed(
+                            2,
+                        ),
+                    ),
                 },
-                {
-                    transaction,
-                },
+                { transaction },
             );
+            // await basket.update({
+            //     price: parseFloat((Number(basketPrice) + Number(foodItemPrice)).toFixed(2)),
+            // })
+
             await transaction.commit();
-            return basket;
+            const respBasket = await this.getBasketByUserId(dto.user_ID);
+            return respBasket;
         } catch (error) {
             await transaction.rollback();
             throw error;
@@ -89,6 +145,13 @@ export class BasketService {
             ]);
 
             await basket.$set('foods', [], { transaction });
+
+            await basket.update(
+                {
+                    price: 0,
+                },
+                { transaction },
+            );
             await transaction.commit();
             return;
         } catch (error) {

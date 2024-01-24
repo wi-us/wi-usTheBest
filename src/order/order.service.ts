@@ -30,6 +30,19 @@ export class OrderService {
         const orders = await this.orderRepository.findAll({ include: Food });
         return orders;
     }
+    async getActiveOrderByUserId(userId: number) {
+        const orders = await this.orderRepository.findAll({
+            where: {
+                user_id: userId,
+                status: 0,
+            },
+            include: {
+                model: Food,
+            },
+        });
+
+        return orders;
+    }
 
     async makeOrder(userId: number) {
         const transaction = await this.sequelize.transaction();
@@ -94,6 +107,7 @@ export class OrderService {
             // })
 
             await transaction.commit();
+            await this.basketService.clearBasket(userId);
             // return userBasket;
             const order_data = await this.getOrderById(order.id);
             return order_data;

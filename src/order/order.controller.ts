@@ -28,7 +28,7 @@ export class OrderController {
         return this.orderService.makeOrder(userId);
     }
 
-    @ApiOperation({ summary: 'Сделатт заказ по user_id' })
+    @ApiOperation({ summary: 'Получить заказ по user_id' })
     @ApiResponse({ status: 200, type: [Order] })
     @Get('/:userId')
     async getOrderByUserId(@Param('userId') userId: number) {
@@ -56,9 +56,14 @@ export class ActiveController {
     constructor(private orderService: OrderService) {}
     @ApiOperation({ summary: 'Получить активные заказы' })
     @ApiResponse({ status: 200, type: [Order] })
-    @Get('')
+    @Get('/')
     async getActiveOrders() {
         return this.orderService.getActiveOrders();
+    }
+
+    @Get('/:userId')
+    async getActiveOrderById(@Param('userId') userId: number) {
+        return this.orderService.getActiveOrderByUserId(userId);
     }
 }
 
