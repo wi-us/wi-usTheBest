@@ -16,8 +16,8 @@ namespace _1111111
 
     public partial class Form1 : Form
     {
-        Order selectedOrder = orders[a];
-        Linepanel form = new Linepanel();
+        public int selectedOrder;
+        
         List<Order> orders;
         public Form1()
         {
@@ -109,14 +109,7 @@ namespace _1111111
 
 
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-            Linepanel linepanel = new Linepanel();
-            linepanel.Show();
-            //this.Hide();
-
-        }
+        
 
         private void button2_Click(object sender, EventArgs e)
         {
@@ -153,17 +146,20 @@ namespace _1111111
 
         public void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+          
             //form.Show();
             int a = listBox1.SelectedIndex;
+            if (a<0) return; 
             string id = listBox1.Text.Replace("order", "");
             obj1 = new { orderId = id } ;
-            
+            selectedOrder = Convert.ToInt32(id);
+            Linepanel form = new Linepanel(selectedOrder);
+
             if (a >= 0)
             {
                 Connection.DoPOST($"{API.API_GetPathTo(API.Roots.Worker)}", JsonConvert.SerializeObject(JObject.FromObject(obj1)));
                 form.Show();
-                Order selectedOrder = orders[a];
+                Order selectedOrderr = orders[a];
                 form.dataGridView1.Columns.Clear();
                 form.dataGridView1.Columns.Add("Name", "Food Name");
                 form.dataGridView1.Columns.Add("Quantity", "Quantity");
@@ -172,7 +168,7 @@ namespace _1111111
                 // Populate rows
                 form.dataGridView1.Rows.Clear();
                 
-                foreach (var food in selectedOrder.foods)
+                foreach (var food in selectedOrderr.foods)
                 {
                     form.dataGridView1.Rows.Add(food.name, food.OrderItem.quantity, food.price);
                 }
@@ -192,7 +188,7 @@ namespace _1111111
                 {
                     try
                     {
-                        orders = Connection.DoGet($"{API.API_GetPathTo(API.Roots.Order1)}");
+                        orders = Connection.DoGet($"{API.API_GetPathTo(API.Roots.Order)}");
                         foreach (Order order in orders)
                         {
                             listBox1.Items.Add($"order{order.id}");

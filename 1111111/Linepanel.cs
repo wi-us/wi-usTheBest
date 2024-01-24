@@ -17,9 +17,11 @@ namespace _1111111
 {
     public partial class Linepanel : Form
     {
-        
+        public int seleceted_id;
         public Linepanel(int id)
         {
+            seleceted_id = id;
+           
             InitializeComponent();
         }
 
@@ -36,11 +38,13 @@ namespace _1111111
         {
             //сюда доделать obj1.form1
             try {
-                string id = Form1.listBox1.Text.Replace("order", "");
-                var dataObject = new { orderId = id };
-                Connection.DoPOST($"{API.API_GetPathTo(API.Roots.Finish)}", JsonConvert.SerializeObject(JObject.FromObject("")));
+               
+                var dataObject = new { orderId = seleceted_id };
+                Connection.DoPOST($"{API.API_GetPathTo(API.Roots.Finish)}", JsonConvert.SerializeObject(dataObject));
 
-            } catch (Exception ex) { }
+            } catch (Exception ex) {
+            MessageBox.Show(ex.Message.ToString());
+            }
             
             this.Hide();
             Form1 fr1 = new Form1();

@@ -12,12 +12,11 @@
       }
     ],
     "additionalProbingPaths": [
-      "C:\\Users\\nkoro\\.dotnet\\store\\|arch|\\|tfm|",
-      "C:\\Users\\nkoro\\.nuget\\packages",
+      "C:\\Users\\artem\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\artem\\.nuget\\packages",
       "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
     ],
     "configProperties": {
-      "System.Runtime.Serialization.EnableUnsafeBinaryFormatterSerialization": true,
       "Microsoft.NETCore.DotNetHostPolicy.SetAppPaths": true
     }
   }

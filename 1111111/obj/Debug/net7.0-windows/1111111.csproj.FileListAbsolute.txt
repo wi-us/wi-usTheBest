@@ -67,3 +67,37 @@ C:\Users\nkoro\Source\Repos\wi-us\wi-usTheBest\1111111\obj\Debug\net7.0-windows\
 C:\Users\nkoro\Source\Repos\wi-us\wi-usTheBest\1111111\obj\Debug\net7.0-windows\1111111.pdb
 C:\Users\nkoro\Source\Repos\wi-us\wi-usTheBest\1111111\obj\Debug\net7.0-windows\1111111.genruntimeconfig.cache
 C:\Users\nkoro\Source\Repos\wi-us\wi-usTheBest\1111111\obj\Debug\net7.0-windows\ref\1111111.dll
+H:\NTI PROJ\wi-usTheBest\1111111\obj\Debug\net7.0-windows\1111111.csproj.AssemblyReference.cache
+H:\NTI PROJ\wi-usTheBest\1111111\obj\Debug\net7.0-windows\_1111111.Form1.resources
+H:\NTI PROJ\wi-usTheBest\1111111\obj\Debug\net7.0-windows\_1111111.History.resources
+H:\NTI PROJ\wi-usTheBest\1111111\obj\Debug\net7.0-windows\_1111111.Linepanel.resources
+H:\NTI PROJ\wi-usTheBest\1111111\obj\Debug\net7.0-windows\_1111111.Properties.Resources.resources
+H:\NTI PROJ\wi-usTheBest\1111111\obj\Debug\net7.0-windows\_1111111.Resourses..resources
+H:\NTI PROJ\wi-usTheBest\1111111\obj\Debug\net7.0-windows\DeliveryApp.Resourses.Window_Authorization.resources
+H:\NTI PROJ\wi-usTheBest\1111111\obj\Debug\net7.0-windows\1111111.csproj.GenerateResource.cache
+H:\NTI PROJ\wi-usTheBest\1111111\obj\Debug\net7.0-windows\1111111.GeneratedMSBuildEditorConfig.editorconfig
+H:\NTI PROJ\wi-usTheBest\1111111\obj\Debug\net7.0-windows\1111111.AssemblyInfoInputs.cache
+H:\NTI PROJ\wi-usTheBest\1111111\obj\Debug\net7.0-windows\1111111.AssemblyInfo.cs
+H:\NTI PROJ\wi-usTheBest\1111111\obj\Debug\net7.0-windows\1111111.csproj.CoreCompileInputs.cache
+H:\NTI PROJ\wi-usTheBest\1111111\obj\Debug\net7.0-windows\1111111.dll
+H:\NTI PROJ\wi-usTheBest\1111111\obj\Debug\net7.0-windows\refint\1111111.dll
+H:\NTI PROJ\wi-usTheBest\1111111\obj\Debug\net7.0-windows\1111111.pdb
+H:\NTI PROJ\wi-usTheBest\1111111\bin\Debug\net7.0-windows\1111111.exe
+H:\NTI PROJ\wi-usTheBest\1111111\bin\Debug\net7.0-windows\1111111.deps.json
+H:\NTI PROJ\wi-usTheBest\1111111\bin\Debug\net7.0-windows\1111111.runtimeconfig.json
+H:\NTI PROJ\wi-usTheBest\1111111\bin\Debug\net7.0-windows\1111111.dll
+H:\NTI PROJ\wi-usTheBest\1111111\bin\Debug\net7.0-windows\1111111.pdb
+H:\NTI PROJ\wi-usTheBest\1111111\bin\Debug\net7.0-windows\Leaf.xNet.dll
+H:\NTI PROJ\wi-usTheBest\1111111\bin\Debug\net7.0-windows\System.Net.Http.Formatting.dll
+H:\NTI PROJ\wi-usTheBest\1111111\bin\Debug\net7.0-windows\Microsoft.AspNetCore.JsonPatch.dll
+H:\NTI PROJ\wi-usTheBest\1111111\bin\Debug\net7.0-windows\Newtonsoft.Json.dll
+H:\NTI PROJ\wi-usTheBest\1111111\bin\Debug\net7.0-windows\Newtonsoft.Json.Bson.dll
+H:\NTI PROJ\wi-usTheBest\1111111\bin\Debug\net7.0-windows\System.Data.SqlClient.dll
+H:\NTI PROJ\wi-usTheBest\1111111\bin\Debug\net7.0-windows\runtimes\win-arm64\native\sni.dll
+H:\NTI PROJ\wi-usTheBest\1111111\bin\Debug\net7.0-windows\runtimes\win-x64\native\sni.dll
+H:\NTI PROJ\wi-usTheBest\1111111\bin\Debug\net7.0-windows\runtimes\win-x86\native\sni.dll
+H:\NTI PROJ\wi-usTheBest\1111111\bin\Debug\net7.0-windows\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
+H:\NTI PROJ\wi-usTheBest\1111111\bin\Debug\net7.0-windows\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
+H:\NTI PROJ\wi-usTheBest\1111111\obj\Debug\net7.0-windows\1111111.csproj.CopyComplete
+H:\NTI PROJ\wi-usTheBest\1111111\obj\Debug\net7.0-windows\1111111.genruntimeconfig.cache
+H:\NTI PROJ\wi-usTheBest\1111111\obj\Debug\net7.0-windows\ref\1111111.dll
