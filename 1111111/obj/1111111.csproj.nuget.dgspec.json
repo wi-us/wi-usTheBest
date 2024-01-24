@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\nkoro\\Source\\Repos\\wi-us\\wi-usTheBest\\1111111\\1111111.csproj": {}
+    "C:\\Users\\nkoro\\source\\repos\\wi-us\\wi-usTheBest\\1111111\\1111111.csproj": {}
   },
   "projects": {
-    "C:\\Users\\nkoro\\Source\\Repos\\wi-us\\wi-usTheBest\\1111111\\1111111.csproj": {
+    "C:\\Users\\nkoro\\source\\repos\\wi-us\\wi-usTheBest\\1111111\\1111111.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\nkoro\\Source\\Repos\\wi-us\\wi-usTheBest\\1111111\\1111111.csproj",
+        "projectUniqueName": "C:\\Users\\nkoro\\source\\repos\\wi-us\\wi-usTheBest\\1111111\\1111111.csproj",
         "projectName": "1111111",
-        "projectPath": "C:\\Users\\nkoro\\Source\\Repos\\wi-us\\wi-usTheBest\\1111111\\1111111.csproj",
+        "projectPath": "C:\\Users\\nkoro\\source\\repos\\wi-us\\wi-usTheBest\\1111111\\1111111.csproj",
         "packagesPath": "C:\\Users\\nkoro\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\nkoro\\Source\\Repos\\wi-us\\wi-usTheBest\\1111111\\obj\\",
+        "outputPath": "C:\\Users\\nkoro\\source\\repos\\wi-us\\wi-usTheBest\\1111111\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
