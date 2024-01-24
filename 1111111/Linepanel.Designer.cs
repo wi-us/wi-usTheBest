@@ -35,9 +35,10 @@
             // 
             // button1
             // 
-            button1.Location = new Point(90, 470);
+            button1.Location = new Point(63, 282);
+            button1.Margin = new Padding(2, 2, 2, 2);
             button1.Name = "button1";
-            button1.Size = new Size(212, 109);
+            button1.Size = new Size(148, 65);
             button1.TabIndex = 0;
             button1.Text = "Завершить заказ";
             button1.UseVisualStyleBackColor = true;
@@ -46,23 +47,25 @@
             // dataGridView1
             // 
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(12, 12);
+            dataGridView1.Location = new Point(8, 7);
+            dataGridView1.Margin = new Padding(2, 2, 2, 2);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 62;
             dataGridView1.RowTemplate.Height = 33;
-            dataGridView1.Size = new Size(360, 452);
+            dataGridView1.Size = new Size(252, 271);
             dataGridView1.TabIndex = 1;
             dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             // 
             // Linepanel
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(403, 591);
+            ClientSize = new Size(282, 355);
             Controls.Add(dataGridView1);
             Controls.Add(button1);
+            Margin = new Padding(2, 2, 2, 2);
             Name = "Linepanel";
-            Text = "LinePanel";
+            Text = "Окно выполнения заказа";
             FormClosing += Linepanel_FormClosing;
             Load += Linepanel_Load_1;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();

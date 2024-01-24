@@ -26,7 +26,7 @@ namespace _1111111
             {
                 try
                 {
-                    orders = Connection.DoGet($"{API.API_GetPathTo(API.Roots.Order)}");
+                    orders = Connection.DoGet($"{API.API_GetPathTo(API.Roots.Order1)}");
                     foreach (Order order in orders)
                     {
                         listBox1.Items.Add($"order{order.id}");
@@ -50,7 +50,7 @@ namespace _1111111
 
         }
 
-        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        public void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             int a = listBox1.SelectedIndex;
 

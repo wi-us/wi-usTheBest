@@ -1,5 +1,7 @@
-﻿using System.Net;
+﻿using Newtonsoft.Json.Linq;
+using System.Net;
 using System.Text;
+using static _1111111.Form1;
 
 namespace DeliveryApp.Resourses
 {
@@ -39,8 +41,9 @@ namespace DeliveryApp.Resourses
                 var g = Newtonsoft.Json.JsonConvert.DeserializeObject(jsonResponse);
                 if (doDeserialize)
                 {
-                    var t = Newtonsoft.Json.JsonConvert.DeserializeObject(jsonResponse);
-                    return t;
+                    var jsonArray = Newtonsoft.Json.JsonConvert.DeserializeObject<JArray>(jsonResponse);
+                    var orderList = jsonArray.ToObject<List<Order>>();
+                    return orderList;
                 }
                 else
                 {

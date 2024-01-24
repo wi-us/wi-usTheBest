@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "koTWyH0d5GuVftbQ9Mx+6Bu+rgLvaP4kRXbRr61iug7Y9nET0x7U8rB4JYztY3XgwbUbDBzXPIXovLdt69mBUg==",
+  "dgSpecHash": "OW4SqZDdJl7BbxHatPnEUCuSottGK2n1CA8Qw0/+fnK40j/UzZDc6RCYEdSRn24gTtWf95vtAYKWWq5Unecgvw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\nkoro\\source\\repos\\1111111\\1111111\\1111111.csproj",
+  "projectFilePath": "C:\\Users\\nkoro\\source\\repos\\wi-us\\wi-usTheBest\\1111111\\1111111.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\nkoro\\.nuget\\packages\\leaf.xnet\\5.2.10\\leaf.xnet.5.2.10.nupkg.sha512",
     "C:\\Users\\nkoro\\.nuget\\packages\\microsoft.aspnet.webapi.client\\6.0.0\\microsoft.aspnet.webapi.client.6.0.0.nupkg.sha512",
@@ -22,5 +22,16 @@
     "C:\\Users\\nkoro\\.nuget\\packages\\system.security.principal.windows\\4.7.0\\system.security.principal.windows.4.7.0.nupkg.sha512",
     "C:\\Users\\nkoro\\.nuget\\packages\\system.threading.tasks.extensions\\4.5.4\\system.threading.tasks.extensions.4.5.4.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "NU1903",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "У пакета \"System.Data.SqlClient\" 4.8.5 есть известная уязвимость https://github.com/advisories/GHSA-98g6-xh36-x2p7 (уровень серьезности: высокий)",
+      "libraryId": "System.Data.SqlClient",
+      "targetGraphs": [
+        "net7.0-windows7.0"
+      ]
+    }
+  ]
 }

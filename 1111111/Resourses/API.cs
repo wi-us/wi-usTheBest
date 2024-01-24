@@ -3,7 +3,7 @@
     public static class API
     {
         //URL сервера
-        public static string url = "https://0385-109-198-122-38.ngrok-free.app";
+        public static string url = "https://8265-109-198-122-38.ngrok-free.app";
         //Токен входа
         public static string token { get; set; }
         //

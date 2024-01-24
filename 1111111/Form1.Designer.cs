@@ -40,9 +40,10 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(12, 9);
+            label1.Location = new Point(8, 5);
+            label1.Margin = new Padding(2, 0, 2, 0);
             label1.Name = "label1";
-            label1.Size = new Size(191, 25);
+            label1.Size = new Size(126, 15);
             label1.TabIndex = 1;
             label1.Text = "информация о заказе";
             // 
@@ -50,9 +51,10 @@
             // 
             button2.BackColor = Color.Transparent;
             button2.Cursor = Cursors.Hand;
-            button2.Location = new Point(12, 465);
+            button2.Location = new Point(8, 279);
+            button2.Margin = new Padding(2);
             button2.Name = "button2";
-            button2.Size = new Size(360, 107);
+            button2.Size = new Size(252, 64);
             button2.TabIndex = 2;
             button2.Text = "Выполненные заказы";
             button2.UseVisualStyleBackColor = false;
@@ -61,30 +63,33 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(255, 9);
+            label3.Location = new Point(178, 5);
+            label3.Margin = new Padding(2, 0, 2, 0);
             label3.Name = "label3";
-            label3.Size = new Size(140, 25);
+            label3.Size = new Size(91, 15);
             label3.TabIndex = 4;
             label3.Text = "Баланс: 0000.00";
             label3.Click += label3_Click;
             // 
             // button4
             // 
-            button4.Location = new Point(12, 41);
+            button4.Location = new Point(8, 25);
+            button4.Margin = new Padding(2);
             button4.Name = "button4";
-            button4.Size = new Size(360, 34);
+            button4.Size = new Size(252, 20);
             button4.TabIndex = 8;
-            button4.Text = "button4";
+            button4.Text = "Включить обновление заказов";
             button4.UseVisualStyleBackColor = true;
             button4.Click += button4_Click;
             // 
             // listBox1
             // 
             listBox1.FormattingEnabled = true;
-            listBox1.ItemHeight = 25;
-            listBox1.Location = new Point(12, 80);
+            listBox1.ItemHeight = 15;
+            listBox1.Location = new Point(8, 48);
+            listBox1.Margin = new Padding(2);
             listBox1.Name = "listBox1";
-            listBox1.Size = new Size(360, 379);
+            listBox1.Size = new Size(253, 229);
             listBox1.TabIndex = 9;
             listBox1.SelectedIndexChanged += listBox1_SelectedIndexChanged;
             // 
@@ -96,18 +101,19 @@
             // 
             // Form1
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.DimGray;
-            ClientSize = new Size(407, 584);
+            ClientSize = new Size(285, 350);
             Controls.Add(listBox1);
             Controls.Add(button4);
             Controls.Add(label3);
             Controls.Add(button2);
             Controls.Add(label1);
             FormBorderStyle = FormBorderStyle.FixedToolWindow;
+            Margin = new Padding(2);
             Name = "Form1";
-            Text = "Form1";
+            Text = "Главная";
             FormClosing += Form1_FormClosing;
             Load += Form1_Load;
             ResumeLayout(false);
@@ -119,7 +125,7 @@
         private Button button2;
         private Label label3;
         private Button button4;
-        private ListBox listBox1;
+        public ListBox listBox1;
         private System.Windows.Forms.Timer timer1;
     }
 }

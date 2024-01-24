@@ -18,7 +18,7 @@ namespace _1111111
     public partial class Linepanel : Form
     {
         
-        public Linepanel()
+        public Linepanel(int id)
         {
             InitializeComponent();
         }
@@ -32,10 +32,16 @@ namespace _1111111
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        public void button1_Click(object sender, EventArgs e)
         {
             //сюда доделать obj1.form1
-            Connection.DoPOST($"{API.API_GetPathTo(API.Roots.Finish)}", JsonConvert.SerializeObject(JObject.FromObject("")));
+            try {
+                string id = Form1.listBox1.Text.Replace("order", "");
+                var dataObject = new { orderId = id };
+                Connection.DoPOST($"{API.API_GetPathTo(API.Roots.Finish)}", JsonConvert.SerializeObject(JObject.FromObject("")));
+
+            } catch (Exception ex) { }
+            
             this.Hide();
             Form1 fr1 = new Form1();
            // fr1.Show(); 

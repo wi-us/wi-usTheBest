@@ -16,12 +16,13 @@ namespace _1111111
 
     public partial class Form1 : Form
     {
+        Order selectedOrder = orders[a];
         Linepanel form = new Linepanel();
         List<Order> orders;
         public Form1()
         {
             InitializeComponent();
-
+            orders = new List<Order>();
         }
         public void Form1_Load(object sender, EventArgs e)
         {
@@ -88,7 +89,7 @@ namespace _1111111
             public DateTime createdAt { get; set; }
             public DateTime updatedAt { get; set; }
             public object Status { get; set; }
-            public List<Food> foods { get; set; }
+            public List<Food>? foods { get; set; }
         }
         
 
@@ -132,6 +133,15 @@ namespace _1111111
         private void button4_Click(object sender, EventArgs e)
         {
             timer1.Enabled = !timer1.Enabled;
+            if (timer1.Enabled)  {
+                button4.Text = "Выключить обновление заказов";
+            }
+            if (!timer1.Enabled)
+            {
+                button4.Text = "Включить обновление заказов";
+            }
+
+
         }
         private void label3_Click(object sender, EventArgs e)
         {
@@ -143,10 +153,11 @@ namespace _1111111
 
         public void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
+
             //form.Show();
             int a = listBox1.SelectedIndex;
             string id = listBox1.Text.Replace("order", "");
-            obj1 = new { orderId = id };
+            obj1 = new { orderId = id } ;
             
             if (a >= 0)
             {
@@ -186,14 +197,13 @@ namespace _1111111
                         {
                             listBox1.Items.Add($"order{order.id}");
 
+
                         }
-
-
                     }
-                    catch 
-                    { 
+                    catch
+                    {
                         listBox1.Items.Add("нет заказов");
-                        
+
                         listBox1.Enabled = false;
                     }
 

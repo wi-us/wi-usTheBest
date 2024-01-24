@@ -36,33 +36,36 @@
             // listBox1
             // 
             listBox1.FormattingEnabled = true;
-            listBox1.ItemHeight = 25;
-            listBox1.Location = new Point(12, 12);
+            listBox1.ItemHeight = 15;
+            listBox1.Location = new Point(8, 7);
+            listBox1.Margin = new Padding(2, 2, 2, 2);
             listBox1.Name = "listBox1";
-            listBox1.Size = new Size(359, 404);
+            listBox1.Size = new Size(252, 244);
             listBox1.TabIndex = 1;
             listBox1.SelectedIndexChanged += listBox1_SelectedIndexChanged;
             // 
             // dataGridView1
             // 
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(377, 12);
+            dataGridView1.Location = new Point(264, 7);
+            dataGridView1.Margin = new Padding(2, 2, 2, 2);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 62;
             dataGridView1.RowTemplate.Height = 33;
-            dataGridView1.Size = new Size(791, 404);
+            dataGridView1.Size = new Size(554, 242);
             dataGridView1.TabIndex = 2;
             dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             // 
             // History
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(893, 450);
+            ClientSize = new Size(625, 270);
             Controls.Add(dataGridView1);
             Controls.Add(listBox1);
+            Margin = new Padding(2, 2, 2, 2);
             Name = "History";
-            Text = "History";
+            Text = "История";
             Load += History_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
